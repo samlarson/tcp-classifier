@@ -39,7 +39,7 @@ you will see the TCP server output "ACTIVATED" messages as the TCP client labels
 
 ## File Structure
 ### exploratory.py
-This file is where I initially tested the socket client and heuristics. The goal is to be able to test analysis on 
+This file is where I initially tested the socket client and heuristics. The goal is to be able to test methods on 
 "frozen" data, to digest the real-time data from the TCP server and store it temporarily in Pandas dataframes to experiment 
 with classification strategies more easily.
 
@@ -48,9 +48,9 @@ not install the graphing library seaborn, the below images show my workflow for 
 image, I kept track of ideas that I had for label rules while looking at the graphed true labels. In the second image, the 
 generated graphs show the line plot of true signals above, and my predicted labels vs. true labels on scatter plots below. 
 In the third image, I have a graph of the line plot of true signals above, and my correct vs. incorrect labels below.
-[Project Whiteboard](docs/tcp_whiteboard.jpg)
-[Project Workflow 1](docs/tcp_workflow_1.png)
-[Project Workflow 2](docs/tcp_workflow_2.png)
+[Project Whiteboard](https://raw.githubusercontent.com/samlarson/tcp-classifier/master/docs/tcp_whiteboard.jpg)
+[Project Workflow 1](https://raw.githubusercontent.com/samlarson/tcp-classifier/master/docs/tcp_workflow_1.png)
+[Project Workflow 2](https://raw.githubusercontent.com/samlarson/tcp-classifier/master/docs/tcp_workflow_2.png)
 
 ### intermediary.py
 The purpose of this file is to test any heuristics developed in exploratory.py. There are two main distinguishing features 
@@ -97,7 +97,7 @@ Measuring program speed in intermediary.py, total elapsed time from buffer inges
 with a buffer size of 100 data points, and 0.024 seconds with a buffer size of 10 data points (the final buffer sized used). 
 The following screenshot shows intermediary.py in action.
 
-[Heuristic Performance](docs/heuristic_performance.png)
+[Heuristic Performance](https://raw.githubusercontent.com/samlarson/tcp-classifier/master/docs/heuristic_performance.png)
 
 ### Buffer & Epoch Size
 While the epoch size did not affect measured performance after a sufficient value (~100), buffer size certainly did. This 
