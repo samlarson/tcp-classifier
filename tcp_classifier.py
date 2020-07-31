@@ -12,13 +12,14 @@ def full_print_df(df):
 # Converts a standard dictionary to a pandas dataframe
 def format_df(raw_dict):
     df = pd.DataFrame.from_dict(raw_dict, orient='index')
-    # Some dictionary elements are mis-formatted because of improperly received messages (multiple data points)
+    # Some dictionary elements are mis-formatted because of improperly received messages (zero or multiple data points)
     # This handles such exceptions and lets the malformed tuple through (it becomes discarded during analysis)
     try:
         df = df[df['timestamp'] != 0]
     except KeyError as e:
-        print("WARNING: Timestamp missing from data point")
-        print(e)
+        cols = ['timestamp', 'data', 'label', 'predicted']
+        df = pd.DataFrame(columns=cols)
+        return df
     # Fills the column of predictions with rest state default
     df['predicted'] = "REST"
 
@@ -119,14 +120,17 @@ def read_buffer(buffer_dict, socket_client):
 
 # Opens the connection to the TCP server, and continuously ingests data in small buffers to analyze and label
 def connect_socket():
-    # Initialize a counter, empty dictionary, and socket connection on the specified port 7890
-    i = 0
-    d = {}
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect(('localhost', 7890))
 
     # Continuous loop that will not be broken unless the server closes the connect or a keyboard interruption is sent
     while True:
+        # Initialize a counter and empty dictionary that get reset for each buffer
+        i = 0
+        d = {}
+
+        # Initialize a socket connection on the specified port 7890
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect(('localhost', 7890))
+
         # Inner continuous loop to generate a buffer where n=10
         while True:
             # Store the message received from the server, with a maximum size of 1024 bytes
