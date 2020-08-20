@@ -1,6 +1,6 @@
 # tcp-classifier
 ## Prerequisites
-### Python Depencencies
+### Python Dependencies
 In order to execute the program, you will need a working Python interpreter (> 3.6) with a few non-standard libraries.
 You should already have an installed version of Python 3. From a terminal, you can check your version and interpreter location with:
     
@@ -8,7 +8,7 @@ You should already have an installed version of Python 3. From a terminal, you c
 
 #### OS X
 If the above command returns an error or a version less than 3.6.0, you can use [homebrew](https://brew.sh/) to install 
-a more recent version (for directions on installing hombrew, see [here](https://docs.brew.sh/Installation)):
+a more recent version (for directions on installing homebrew, see [here](https://docs.brew.sh/Installation)):
     
     $ brew install python3
     $ brew install pip3
@@ -23,12 +23,12 @@ To execute the main program, the only necessary libraries to import are 'json', 
 is a non-standard library.
 To install the libraries for exploratory.py, use the Python package manager pip3 (some systems may alias as simply 'pip'):
     
-    $ sudo pip install matplotlib pandas seaborn
+    $ sudo pip3 install matplotlib pandas seaborn
 
 ## Executing the Program
 From the directory 'tcp-classifier/', enter the following command to start up the TCP server:
 
-    $ java -jar ./pison-challenge-0.2-all.jar
+    $ java -jar ./tcp_server.jar
 
 From the same directory, enter the following command in a separate terminal (some systems may alias as simply 'python'):
 
@@ -44,17 +44,10 @@ This file is where I initially tested the socket client and heuristics. The goal
 with classification strategies more easily.
 
 I purposefully left this file messy to make my process observable. It shows where I started with the problem. If you'd rather 
-not install the graphing library seaborn, the below images show my workflow for experimenting with labeling. In the first 
+not install the graphing library seaborn, the below three images show my workflow for experimenting with labeling. In the first 
 image, I kept track of ideas that I had for label rules while looking at the graphed true labels. In the second image, the 
 generated graphs show the line plot of true signals above, and my predicted labels vs. true labels on scatter plots below. 
 In the third image, I have a graph of the line plot of true signals above, and my correct vs. incorrect labels below.
-
-![Project Whiteboard](./docs/tcp_whiteboard.jpg)
-
-![Project Workflow 1](./docs/tcp_workflow_1.png)
-
-![Project Workflow 2](./docs/tcp_workflow_2.png)
-
 
 ### intermediary.py
 The purpose of this file is to test any heuristics developed in exploratory.py. There are two main distinguishing features 
@@ -73,6 +66,12 @@ The code has been commented and shortened for readability.
 This is the file that executes tcp_classifier.py. If in future iterations there were multiple Python files that needed to 
 interact with each other, they would be imported here. You could also run the program from the tcp_classifier.py file itself, 
 centralizing project execution here reduces complexity if I continue to work on the project.
+
+![Project Whiteboard](./docs/tcp_whiteboard.jpg)
+
+![Project Workflow 1](./docs/tcp_workflow_1.png)
+
+![Project Workflow 2](./docs/tcp_workflow_2.png)
 
 ## Design Considerations
 ### Simple Heuristic vs. ML Classifier
